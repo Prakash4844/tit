@@ -21,7 +21,9 @@ def get_version(
         help="Print version and exit.",
     ),
 ) -> None:
-    """Display the version."""
+    """
+    Display the version of ZAQ - Version Control System.
+    """
     if version:
         typer.echo(f"ZAQ Version: {__version__}")
         raise typer.Exit()
