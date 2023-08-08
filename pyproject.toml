@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "name-subject-to-change"
+version = "0.1.0"
+description = ""
+authors = ["Prakash4844 <pk484442@gmail.com>"]
+readme = "README.md"
+packages = [{include = "name_subject_to_change"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typer = "^0.9.0"
+rich = "^13.5.2"
+shellingham = "^1.5.0.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
