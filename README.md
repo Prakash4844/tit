@@ -1,17 +1,21 @@
-# TIT
-{TIT} - A Distributed VCS in Python. A distributed revision control system in Python. an Open Source project covered by the GNU General Public License.
-
-<h3>Commands</h3>
-<h5>Help</h5>
-<p>This shows the help menu</p>
+<h1><center>TIT</center></h1>
+TIT - A Distributed Version Control System in Python. an Open Source project covered by the GNU General Public License.
 
 ```
--h | --help
+Usage: main.py [OPTIONS] COMMAND [ARGS]...
+
+  ZAQ: Version Control System.
+
+  Version: 0.0.1
+
+Options:
+  -v, --version  Print version and exit.
+  -h, --help     Show this message and exit.
 ```
 
-<h5>Version</h5>
-<p>Prints the Version</p>
+<h3>Usage</h3>
 
-```
--v | --version
-```
+|    Commands       |         Description           | 
+| ----------------- | ----------------------------- |
+|   -h, --help  	|       Shows the help      	|
+| -v, --version 	| Prints the Version of TIT 	|
