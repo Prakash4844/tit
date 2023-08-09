@@ -1,35 +1,32 @@
 import typer
 
-app = typer.Typer()
+__version__ = "0.0.1"
+
+app = typer.Typer(
+    name="zaq",
+    no_args_is_help=True,
+    add_completion=False,
+    invoke_without_command=True,
+    help=f"ZAQ: Version Control System. \n\nVersion: {__version__}",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
 
 
-def version_callback(value: bool):
+@app.callback(invoke_without_command=True)
+def get_version(
+    version: bool = typer.Option(
+        False,
+        "--version",
+        "-v",
+        help="Print version and exit.",
+    ),
+) -> None:
     """
-    Report current version of ZAQ - Version Control System package.
+    Display the version of ZAQ - Version Control System.
     """
-    __version__ = "0.1.0"
-    if value:
+    if version:
         typer.echo(f"ZAQ Version: {__version__}")
         raise typer.Exit()
-
-
-@app.callback()
-def main(
-    version: bool = typer.Option(
-        None,
-        "-v",
-        "--version",
-        callback=version_callback,
-        is_eager=True,
-        help="Report current version of zaq package.",
-    )
-):
-    return
-
-
-@app.command()
-def zaq():
-    print(f"Zaq is the temporary name of this project.")
 
 
 if __name__ == "__main__":
