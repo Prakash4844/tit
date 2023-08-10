@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "name-subject-to-change"
+name = "tit"
 version = "0.1.0"
 description = ""
 authors = ["Prakash4844 <pk484442@gmail.com>"]
 readme = "README.md"
-packages = [{include = "name_subject_to_change"}]
+packages = [{include = "tit"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
