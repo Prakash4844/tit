@@ -3,11 +3,11 @@ import typer
 __version__ = "0.0.1"
 
 app = typer.Typer(
-    name="zaq",
+    name="tit",
     no_args_is_help=True,
     add_completion=False,
     invoke_without_command=True,
-    help=f"ZAQ: Version Control System. \n\nVersion: {__version__}",
+    help=f"TIT: Version Control System. \n\nVersion: {__version__}",
     context_settings={"help_option_names": ["-h", "--help"]},
 )
 
@@ -22,10 +22,10 @@ def get_version(
     ),
 ) -> None:
     """
-    Display the version of ZAQ - Version Control System.
+    Display the version of tit - Version Control System.
     """
     if version:
-        typer.echo(f"ZAQ Version: {__version__}")
+        typer.echo(f"TIT Version: {__version__}")
         raise typer.Exit()
 
 
