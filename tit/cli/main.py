@@ -1,6 +1,5 @@
 import typer
-
-__version__ = "0.0.1"
+from tit import __version__
 
 app = typer.Typer(
     name="tit",
