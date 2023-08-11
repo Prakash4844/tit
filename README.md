@@ -15,10 +15,10 @@ TIT - A Distributed Version Control System in Python. an Open Source project cov
  TIT: Version Control System.                                                                                                                       
  Version: 0.0.1                                                                                                                                     
                                                                                                                                                     
-╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --version  -v        Print version and exit.                                                                                                     │
-│ --help     -h        Show this message and exit.                                                                                                 │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────╮
+│ --version  -v        Print version and exit.       │
+│ --help     -h        Show this message and exit.   │
+╰────────────────────────────────────────────────────╯
 ```
 
 <h3>Usage</h3>
