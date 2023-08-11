@@ -1,21 +1,29 @@
-<h1><center>TIT</center></h1>
+
+<!--suppress HtmlDeprecatedAttribute -->
+
+<h1 align="center">TIT</h1>
+<h5 align="center">Tit Information Tracker</h5>
+<p align="center"> 
+    <img src="img/Logo/tit_logo.svg" width="300" alt="Logo">
+</p>
+
 TIT - A Distributed Version Control System in Python. an Open Source project covered by the GNU General Public License.
 
-```
-Usage: main.py [OPTIONS] COMMAND [ARGS]...
-
-  ZAQ: Version Control System.
-
-  Version: 0.0.1
-
-Options:
-  -v, --version  Print version and exit.
-  -h, --help     Show this message and exit.
+```bash                                                                                                                                         
+ Usage: main.py [OPTIONS] COMMAND [ARGS]...                                                                                                         
+                                                                                                                                                    
+ TIT: Version Control System.                                                                                                                       
+ Version: 0.0.1                                                                                                                                     
+                                                                                                                                                    
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --version  -v        Print version and exit.                                                                                                     │
+│ --help     -h        Show this message and exit.                                                                                                 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 <h3>Usage</h3>
 
-|    Commands       |         Description           | 
-| ----------------- | ----------------------------- |
-|   -h, --help  	|       Shows the help      	|
-| -v, --version 	| Prints the Version of TIT 	|
+| Commands        | Description                 | 
+|-----------------|-----------------------------|
+| -h, --help  	   | Shows the help      	       |
+| -v, --version 	 | Prints the Version of TIT 	 |
