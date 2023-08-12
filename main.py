@@ -6,7 +6,6 @@ from tit import __version__  # Importing the version information from the 'tit' 
 app = typer.Typer(
     name="tit",
     no_args_is_help=True,
-    add_completion=False,
     invoke_without_command=True,
     help=f"TIT: Version Control System. \n\nVersion: {__version__}",
     context_settings={"help_option_names": ["-h", "--help"]},
@@ -30,6 +29,8 @@ def get_version(
         typer.echo(f"TIT Version: {__version__}")  # Print the version information if the version option is provided
         raise typer.Exit()  # Exit the application
 
+
+# app.add_typer(tit_version.tit_version, name="version")
 
 # Execute the Typer app when the script is run directly
 if __name__ == "__main__":
