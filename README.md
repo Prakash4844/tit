@@ -1,10 +1,9 @@
-
 <!--suppress HtmlDeprecatedAttribute -->
 
-<h1 align="center">TIT</h1>
-<h5 align="center">Tit Information Tracker</h5>
 <p align="center"> 
-    <img src="img/Logo/PNG/tit_logo.png" width="200" alt="Logo">
+    <img src="img/Logo/PNG/tit_logo_nobg.png" width="200" alt="Logo">
+    <h1 align="center">TIT</h1>
+    <h5 align="center">Tit Information Tracker</h5>
 </p>
 
 TIT - A Distributed Version Control System in Python. an Open Source project covered by the GNU General Public License.
