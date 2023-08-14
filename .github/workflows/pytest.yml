@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false # Don't stop all jobs if one fails
       matrix:
-        python-version: [ "3.7", "3.8", "3.9", "3.10", "3.11" ] # Test against multiple Python versions
+        python-version: [ "3.9", "3.10", "3.11" ] # Test against multiple Python versions
 
     steps:
       - uses: actions/checkout@v3

@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "tit"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 typer = "^0.9.0"
 rich = "^13.5.2"
 shellingham = "^1.5.0.post1"
