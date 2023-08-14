@@ -32,6 +32,7 @@ jobs:
           key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
       - run: poetry --version
       - run: poetry install -v # Install dependencies
+      - run: poetry shell # Activate virtualenv
 
       - name: Lint with flake8 # Lint with flake8
         run: |
