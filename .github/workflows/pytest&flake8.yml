@@ -6,8 +6,11 @@ name: Run PyTest and Flake8 for testing and linting
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
-  pull_request: # Triggers the workflow on pull request events but only for the main branch
-    branches: [ "main" ] # Push events are not trigger for forks
+  push: # Triggers the workflow on push events but only for main and development branch
+      branches: [ "main" ] # Push events are not trigger for forks
+
+  pull_request: # Triggers the workflow on pull request events but only for main and development branch
+    branches: [ "main", "development" ] # Push events are not trigger for forks
 
 jobs:
   build:
