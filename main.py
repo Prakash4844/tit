@@ -1,5 +1,6 @@
 import typer
-from tit import __version__  # Importing the version information from the 'tit' module
+from tit import __version__
+from tit.commands import tit_init
 
 # Create a Typer app instance.
 # Set the app's help message with the version information.
@@ -15,12 +16,12 @@ app = typer.Typer(
 # Define a callback function to display the version information
 @app.callback(invoke_without_command=True)
 def get_version(
-    version: bool = typer.Option(
-        False,
-        "--version",
-        "-v",
-        help="Print version and exit.",  # Help message for the version option
-    ),
+        version: bool = typer.Option(
+            False,
+            "--version",
+            "-v",
+            help="Print version and exit.",  # Help message for the version option
+        ),
 ) -> None:
     """
     Display the version of tit - Version Control System.
@@ -30,7 +31,9 @@ def get_version(
         raise typer.Exit()  # Exit the application
 
 
-# app.add_typer(tit_version.tit_version, name="version")
+# -----------------Commands----------------------
+
+app.add_typer(tit_init.app, name="init")
 
 # Execute the Typer app when the script is run directly
 if __name__ == "__main__":
