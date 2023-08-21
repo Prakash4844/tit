@@ -1,68 +1,57 @@
-import os
 from typer.testing import CliRunner
-from tit.commands.tit_init import app
+from main import app
+import os
 
 runner = CliRunner()
-
-
-def test_tit_init_no_git():
-    result = runner.invoke(app)
-    assert result.exit_code == 0
-    assert "Initialized an empty tit repository" in result.output
 
 
 def test_tit_init_existing_git():
     # Create a temporary .git directory for testing
     with runner.isolated_filesystem():
-        os.mkdir(".git")
-        result = runner.invoke(app)
+        os.mkdir(".git")  # Create a .git directory
+        result = runner.invoke(app, ["init"])
         assert result.exit_code == 0
-        assert "this seems to be a git repository." in result.output
+        assert "This seems to be a git repository." in result.output
+
+
+def test_tit_init_existing_git_force():
+    # Create a temporary .git directory for testing
+    with runner.isolated_filesystem():
+        os.mkdir(".git")  # Create a .git directory
+        result = runner.invoke(app, ["init", "--force"])
+        assert result.exit_code == 0
         assert "Initialized an empty tit repository" in result.output
 
 
-def test_tit_init_existing_git_no_create():
-    # Create a temporary .git directory for testing
+def test_tit_init_not_git_repo():
     with runner.isolated_filesystem():
-        os.mkdir(".git")
-        result = runner.invoke(app, input="n\n")
+        result = runner.invoke(app, ["init"])
         assert result.exit_code == 0
-        assert "this seems to be a git repository." in result.output
-        assert "didn't Initialize a tit repo" in result.output
-
-
-def test_tit_init_existing_git_create():
-    # Create a temporary .git directory for testing
-    with runner.isolated_filesystem():
-        os.mkdir(".git")
-        result = runner.invoke(app, input="y\n")
-        assert result.exit_code == 0
-        assert "this seems to be a git repository." in result.output
         assert "Initialized an empty tit repository" in result.output
 
 
-def test_tit_init_existing_tit():
+def test_tit_init_force_not_git_repo():
+    with runner.isolated_filesystem():
+        result = runner.invoke(app, ["init", "--force"])
+        assert result.exit_code == 0
+        assert "Initialized an empty tit repository" in result.output
+
+
+def test_tit_init_existing_tit_repo():
     # Create a temporary .tit directory for testing
     with runner.isolated_filesystem():
-        os.mkdir(".tit")
-        result = runner.invoke(app)
+        os.mkdir(".tit")  # Create a .tit directory
+        result = runner.invoke(app, ["init"])
         assert result.exit_code == 0
         assert "a tit repo already exist." in result.output
 
 
-def test_tit_init_existing_tit_no_create():
+def test_tit_init_verbose_existing_tit_repo():
     # Create a temporary .tit directory for testing
     with runner.isolated_filesystem():
-        os.mkdir(".tit")
-        result = runner.invoke(app, input="n\n")
+        os.mkdir(".tit")  # Create a .tit directory
+        result = runner.invoke(app, ["init", "--verbose"])
         assert result.exit_code == 0
         assert "a tit repo already exist." in result.output
 
-
-def test_tit_init_existing_tit_create():
-    # Create a temporary .tit directory for testing
-    with runner.isolated_filesystem():
-        os.mkdir(".tit")
-        result = runner.invoke(app, input="y\n")
-        assert result.exit_code == 0
-        assert "a tit repo already exist." in result.output
+# Add more test cases as needed
