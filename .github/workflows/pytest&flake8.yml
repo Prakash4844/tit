@@ -7,10 +7,25 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
   push: # Triggers the workflow on push events but only for main and development branch
-      branches: [ "main" ] # Push events are not trigger for forks
+    branches: [ "main" ] # Push events are not trigger for forks
+    paths:
+    # The paths key specifies the specific paths (folder and file)
+    # where changes need to occur in order for the workflow to trigger.
+      - "tit/**"
+      - "tests/**"
+      - "main.py"
+      - ".github/workflows/**"
 
-  pull_request: # Triggers the workflow on pull request events but only for main and development branch
+  pull_request:
+    # Triggers the workflow on pull request events but only for main and development branch
     branches: [ "main", "development" ] # Push events are not trigger for forks
+    paths:
+    # The paths key specifies the specific paths (folder and file)
+    # where changes need to occur in order for the workflow to trigger.
+      - "tit/**"
+      - "tests/**"
+      - "main.py"
+      - ".github/workflows/**"
 
 jobs:
   build:
