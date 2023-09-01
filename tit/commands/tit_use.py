@@ -27,7 +27,6 @@ def tit_use(vcs: str) -> None:
             try:
                 write_file(".git/tit_config.yaml", 'Repo_type: ".git"')
                 print("[green]Set up:[/green] tit to use .git repository")
-                print("Set up: tit to use .git repository")
             except NotADirectoryError:
                 print("[bold red]FATAL:[/bold red] No git repo found.")
     else:

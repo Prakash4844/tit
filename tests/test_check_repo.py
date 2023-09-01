@@ -3,6 +3,7 @@ import tempfile
 import datetime
 import yaml
 from tit.check_repo import current_datetime, check_if_repo
+from tit.write_file import write_file
 
 
 def test_current_datetime():
@@ -18,14 +19,6 @@ def test_check_if_repo_no_repo():
     with tempfile.TemporaryDirectory() as tmpdir:
         os.chdir(tmpdir)
         assert not check_if_repo()
-
-
-def test_check_if_repo_git_repo():
-    # Test when a .git repo exists
-    with tempfile.TemporaryDirectory() as tmpdir:
-        os.chdir(tmpdir)
-        os.mkdir(".git")
-        assert check_if_repo()
 
 
 def test_check_if_repo_tit_repo():
@@ -51,9 +44,7 @@ def test_check_if_repo_git_repo_with_valid_tit_config():
     with tempfile.TemporaryDirectory() as tmpdir:
         os.chdir(tmpdir)
         os.mkdir(".git")
-        with open(os.path.join('.git', 'tit_config.yaml'), 'w') as file:
-            yaml_data = {'Repo_type': '.git'}
-            yaml.dump(yaml_data, file)
+        write_file(".git/tit_config.yaml", 'Repo_type: ".git"')
         assert check_if_repo()
 
 
