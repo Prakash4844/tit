@@ -4,6 +4,7 @@
 
 import os
 import typer
+from sys import exit
 from rich import print
 from typer import Typer
 from typing_extensions import Annotated
@@ -24,14 +25,45 @@ def create_repo(verbose: bool = False) -> None:
     :return:
     """
     if verbose:
-        print(f"[green]{current_datetime()}[/green]: making a empty tit repository in [blue]{os.getcwd()}[blue]")
+        print(f"{current_datetime()}: making a empty tit repository in {os.getcwd()}")
     try:
         os.mkdir(os.path.join('.tit'))
-        for name in ['objects', 'refs', 'refs/heads']:
-            os.mkdir(os.path.join('.tit', name))
-        write_binary_file(os.path.join('.tit', 'HEAD'),
+        os.chdir('./.tit')
+        tit_dir = os.getcwd()
+        for name in ['branches', 'info', 'objects/info', 'objects/pack', 'refs/heads', 'refs/tags']:
+            os.makedirs(os.path.join(tit_dir, name), exist_ok=True)
+
+        if verbose:
+            print(f"{current_datetime()}: Creating HEAD reference now")
+        # Create HEAD reference
+        write_binary_file(os.path.join(tit_dir, 'HEAD'),
                           b'ref: refs/heads/main')
-        print(f"Initialized an empty tit repository in [blue]{os.getcwd()}[blue]")
+
+        # Create the description file
+        with open(os.path.join(tit_dir, 'description'), 'w') as description_file:
+            description_file.write("Unnamed repository; edit this file 'description' to name the repository..\n")
+
+        # Create the config file with default settings
+        with open(os.path.join(tit_dir, 'config'), 'w') as config_file:
+            config_file.write('[core]\n')
+            config_file.write('\trepositoryformatversion = 0\n')
+            config_file.write('\tfilemode = true\n')
+            config_file.write('\tbare = false\n')
+            config_file.write('\tlogallrefupdates = true\n')
+
+        if verbose:
+            print(f"{current_datetime()}: Creating Index")
+        # Initialize an empty index file
+        open(os.path.join(tit_dir, 'index'), 'w').close()
+
+        if verbose:
+            print(f"{current_datetime()}: Checking out main branch")
+        # Initialize an empty main branch
+        open(os.path.join(tit_dir, 'refs', 'heads', 'main'), 'w').close()
+
+        if verbose:
+            print(f"{current_datetime()}", end=": ")
+        print(f"Initialized an empty tit repository in {os.getcwd()}")
     except FileExistsError:
         print("a tit repo already exist.")
 
@@ -61,7 +93,7 @@ def tit_init(
         exit(0)
     elif force and verbose:
         create_repo(verbose=verbose)
-        exit()
+        exit(0)
 
     is_git_repo = check_if_repo(verbose=verbose)
 
