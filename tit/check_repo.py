@@ -74,13 +74,14 @@ def check_if_repo(verbose: bool = False) -> bool:
     current_dir = os.getcwd()  # Get the current working directory
     while current_dir != "/":  # Stop when reaching the root directory
         if os.path.isdir('.tit'):
-            print(f'A tit repo found in {os.getcwd()}')
+            print(f'A tit repo found in "{os.getcwd()}"')
             return True
         elif os.path.isdir('.git'):
-            print(f'A git repo found in {os.getcwd()}')
+            print(f'A git repo found in "{os.getcwd()}"')
             is_config = check_tit_config(verbose)
             return is_config
         current_dir = os.path.dirname(current_dir)  # Move to the parent directory
-    print('[bold red]Error:[/bold red] Neither git nor a tit repo found in Current of any of the parent '
-          'directories.')
+    if verbose:
+        print('[bold red]Error:[/bold red] Neither git nor a tit repo found in current or any of the parent '
+              'directories.')
     return False
