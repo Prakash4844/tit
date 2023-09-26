@@ -1,4 +1,25 @@
 [flake8]
+count = True
+# print the total number of errors and warnings to standard error after all files have been checked
+
+verbose = 1
+# enable verbose output
+
+color = True
+# Use colors to distinguish errors, warnings, and other information.
+
+statistics = True
+# Show statistics (number of errors, warnings, etc.) at the end.
+
+show-source = True
+# Show the source generate each error or warning.
+
+max-complexity = 10
+# Set the maximum McCabe complexity threshold to 10.
+
+max-line-length = 120
+# Set the maximum line length to 127 characters. The GitHub editor is 127 chars wide.
+
 exclude=
     # No need to traverse venv
     .venv,
