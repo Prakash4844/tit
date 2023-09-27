@@ -38,6 +38,7 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
+coverage_html_report/
 .tox/
 .nox/
 .coverage
@@ -239,3 +240,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /.idea/misc.xml
+
+/.tit/

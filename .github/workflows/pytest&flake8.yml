@@ -7,10 +7,25 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
   push: # Triggers the workflow on push events but only for main and development branch
-      branches: [ "main" ] # Push events are not trigger for forks
+    branches: [ "main" ] # Push events are not trigger for forks
+    paths:
+    # The paths key specifies the specific paths (folder and file)
+    # where changes need to occur in order for the workflow to trigger.
+      - "tit/**"
+      - "tests/**"
+      - "main.py"
+      - ".github/workflows/**"
 
-  pull_request: # Triggers the workflow on pull request events but only for main and development branch
+  pull_request:
+    # Triggers the workflow on pull request events but only for main and development branch
     branches: [ "main", "development" ] # Push events are not trigger for forks
+    paths:
+    # The paths key specifies the specific paths (folder and file)
+    # where changes need to occur in order for the workflow to trigger.
+      - "tit/**"
+      - "tests/**"
+      - "main.py"
+      - ".github/workflows/**"
 
 jobs:
   build:
@@ -36,13 +51,10 @@ jobs:
       - run: poetry --version
       - run: poetry install -v # Install dependencies
 
-      - name: Lint with flake8 # Lint with flake8
+      - name: Lint with flake8 # Lint with flake8 using configuration from `.flake8` file
         run: |
-          # stop the build if there are Python syntax errors or undefined names
-          poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          poetry run flake8 .
 
-      - name: Run Test with PyTest # Run pytest
+      - name: Run Test with PyTest # Run pytest using configuration from `pyproject.toml` file
         run: |
           poetry run pytest

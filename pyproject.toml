@@ -10,10 +10,41 @@ packages = [{include = "tit"}]
 python = "^3.9"
 typer = "^0.9.0"
 rich = "^13.5.2"
-shellingham = "^1.5.0.post1"
+shellingham = "^1.5.2"
 pytest = "^7.4.0"
 flake8 = "^6.1.0"
+pyyaml = "^6.0.1"
+pytest-cov = "^4.1.0"
+pytest-html = "^4.0.2"
 
+[tool.pytest.ini_options]
+addopts = [
+  "--verbose",         # Run tests in verbose mode
+  "--cov",  # Replace with the name of the module or package you want to measure coverage for
+  "--cov-report=html",  # Generate HTML coverage report
+]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_also = [
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self\\.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+
+    # Don't complain about abstract methods, they aren't run:
+    "@(abc\\.)?abstractmethod",
+    ]
+
+[tool.coverage.html]
+directory = "coverage_html_report"
 
 [build-system]
 requires = ["poetry-core"]
