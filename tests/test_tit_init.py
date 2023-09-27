@@ -75,3 +75,13 @@ def test_tit_init_existing_git_repo_verbose():
         # Test tit init when a .git repo already exists with verbose option
         result = runner.invoke(app, ["init", "--verbose"])
         assert "This seems to be a git repository" in result.output
+
+
+def test_tit_init_verbose_force():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        os.chdir(tmpdir)
+        os.mkdir('.git')
+        # Test tit init when a .git repo already exists with verbose option
+        result = runner.invoke(app, ["init", "--verbose", "--force"])
+        assert "Initialized an empty tit repository" in result.output
+

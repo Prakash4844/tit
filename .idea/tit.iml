@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/output" />
       <excludeFolder url="file://$MODULE_DIR$/htmlcov" />
+      <excludeFolder url="file://$MODULE_DIR$/coverage_html_report" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (tit)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
