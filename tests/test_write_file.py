@@ -43,4 +43,16 @@ def test_write_file():
 
     os.remove(tmp_file_path)
 
+
+def test_read_tit_invalid_config(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        os.chdir(tmpdir)
+        os.mkdir(".git")
+        with open(os.path.join('.git', 'tit_config.yaml'), 'w') as file:
+            yaml_data = {'Repo_type': 'invalid'}
+            read_tit_config_yaml_file("./.git/tit_config.yaml")
+            captured = capsys.readouterr()
+            assert "tit config file found, but doesn't contain any supported VCS" in captured.out
+
+
 # Run the tests using the pytest command
