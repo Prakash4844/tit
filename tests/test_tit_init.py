@@ -84,4 +84,3 @@ def test_tit_init_verbose_force():
         # Test tit init when a .git repo already exists with verbose option
         result = runner.invoke(app, ["init", "--verbose", "--force"])
         assert "Initialized an empty tit repository" in result.output
-
