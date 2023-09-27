@@ -50,13 +50,11 @@ def check_tit_config(verbose: bool = False) -> bool:
                     return False
         else:
             print_info(verbose)
-            return True
-    except (FileNotFoundError, yaml.YAMLError):
-        if yaml.YAMLError:
+            return False
+    except (yaml.YAMLError, ValueError):
+        if yaml.YAMLError or ValueError:
             print("[bold red]Error:[/bold red] Invalid YAML")
-            return True
-        print_info(verbose)
-        return True
+            return False
 
 
 def check_if_repo(verbose: bool = False) -> bool:
