@@ -51,13 +51,10 @@ jobs:
       - run: poetry --version
       - run: poetry install -v # Install dependencies
 
-      - name: Lint with flake8 # Lint with flake8
+      - name: Lint with flake8 # Lint with flake8 using configuration from `.flake8` file
         run: |
-          # stop the build if there are Python syntax errors or undefined names
-          poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          poetry run flake8 .
 
-      - name: Run Test with PyTest # Run pytest in verbose mode
+      - name: Run Test with PyTest # Run pytest using configuration from `pyproject.toml` file
         run: |
-          poetry run pytest -v
+          poetry run pytest

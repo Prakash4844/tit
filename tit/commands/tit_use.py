@@ -26,9 +26,10 @@ def tit_use(vcs: str) -> None:
         else:
             try:
                 write_file(".git/tit_config.yaml", 'Repo_type: ".git"')
-                print("[green]Set up:[/green] tit to use .git repository")
-            except NotADirectoryError:
+                print("[green]Setup:[/green] tit to use .git repository")
+            except FileNotFoundError:
                 print("[bold red]FATAL:[/bold red] No git repo found.")
+
     else:
         print(f"[bold red]INVALID:[/bold red] {vcs} VCS not supported.")
 

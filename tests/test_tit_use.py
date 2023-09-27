@@ -32,3 +32,10 @@ def test_tit_use_already_set_up():
         result = runner.invoke(app, ["use", "git"])
         assert result.exit_code == 0
         assert "Already set up to use git repo" in result.output
+
+
+def test_tit_use_no_git_repo():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        os.chdir(tmpdir)
+        result = runner.invoke(app, ["use", "git"])
+        assert "No git repo found" in result.output

@@ -63,7 +63,7 @@ def create_repo(verbose: bool = False) -> None:
 
         if verbose:
             print(f"{current_datetime()}", end=": ")
-        print(f"Initialized an empty tit repository in {os.getcwd()}")
+        print(f'Initialized an empty tit repository in "{os.getcwd()}"')
     except FileExistsError:
         print("a tit repo already exist.")
 
