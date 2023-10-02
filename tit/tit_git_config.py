@@ -1,4 +1,7 @@
 def read_tit_config_yaml_file(path):
+    """
+    Read tit_config and returns true if a valid config is found.
+    """
     try:
         with open(path) as f:
             repo_name = f.readline()
