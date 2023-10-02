@@ -4,7 +4,8 @@
 
 from typer import Typer
 from rich import print
-from tit.write_file import write_file, read_tit_config_yaml_file
+from tit.write_file import write_file
+from tit.tit_git_config import read_tit_config_yaml_file
 
 # create a typer app using required data.
 app = Typer(
