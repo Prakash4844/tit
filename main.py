@@ -1,6 +1,6 @@
 import typer
 from tit import __version__
-from tit.commands import tit_init, tit_use
+from tit.commands import tit_init, tit_use, tit_add
 
 # Create a Typer app instance.
 # Set the app's help message with the version information.
@@ -35,6 +35,7 @@ def get_version(
 
 app.add_typer(tit_init.app, name="init")
 app.add_typer(tit_use.app, name="use")
+app.add_typer(tit_add.app, name="add")
 
 # Execute the Typer app when the script is run directly
 if __name__ == "__main__":

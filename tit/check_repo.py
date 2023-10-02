@@ -32,10 +32,11 @@ def print_info(verbose: bool = False):
         print("example 2: [bold green]tit use git[/bold green]")
 
 
-def check_tit_config(verbose: bool = False) -> bool:
+def check_tit_config(verbose: bool = False, quite: bool = False) -> bool:
     """
     check if the git repo is set up to be used with tit.
     :param verbose: If True, print verbose information.
+    :param quite: Used for suppressing print messages for internal calls
     :return: bool
     """
     try:
@@ -44,7 +45,8 @@ def check_tit_config(verbose: bool = False) -> bool:
                 tit_config = yaml.safe_load(file)
                 tit_config = dict(tit_config)
                 if tit_config.get('Repo_type') == '.git':
-                    print("tit is set up to work with already present git repo.")
+                    if not quite:
+                        print("tit is set up to work with already present git repo.")
                     return True
                 else:
                     return False
@@ -53,15 +55,17 @@ def check_tit_config(verbose: bool = False) -> bool:
             return False
     except (yaml.YAMLError, ValueError):
         if yaml.YAMLError or ValueError:
-            print("[bold red]Error:[/bold red] Invalid YAML")
+            if not quite:
+                print("[bold red]Error:[/bold red] Invalid YAML")
             return False
 
 
-def check_if_repo(verbose: bool = False) -> bool:
+def check_if_repo(verbose: bool = False, quite: bool = False) -> bool:
     """
     check if a .git repo already exist in current working directory
     Print information about setting up tit repository.
     :param verbose: If True, print verbose  information.
+    :param quite: Used for suppressing print messages for internal calls
     :returns: bool
     """
 
@@ -72,11 +76,15 @@ def check_if_repo(verbose: bool = False) -> bool:
     current_dir = os.getcwd()  # Get the current working directory
     while current_dir != "/":  # Stop when reaching the root directory
         if os.path.isdir('.tit'):
-            print(f'A tit repo found in "{os.getcwd()}"')
+            if not quite:
+                print(f'A tit repo found in "{os.getcwd()}"')
             return True
         elif os.path.isdir('.git'):
-            print(f'A git repo found in "{os.getcwd()}"')
-            is_config = check_tit_config(verbose)
+            if not quite:
+                print(f'A git repo found in "{os.getcwd()}"')
+                is_config = check_tit_config(verbose)
+            else:
+                is_config = check_tit_config(quite=True)
             return is_config
         current_dir = os.path.dirname(current_dir)  # Move to the parent directory
     if verbose:
