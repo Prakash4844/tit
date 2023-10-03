@@ -3,13 +3,13 @@
 # date: 2 Oct, 2023
 # Comments: Happy Birthday Lal Bahadur Shastri and Mahatma Gandhi
 
+import collections
+import hashlib
 import os
 import struct
-import hashlib
-import collections
+from .check_repo import internal_repo_name_check
 from .read_file import read_binary_file
 from .write_file import write_binary_file
-from .check_repo import check_if_repo
 
 # Data for one entry in the git index (.git/index)
 IndexEntry = collections.namedtuple('IndexEntry', [
@@ -17,19 +17,10 @@ IndexEntry = collections.namedtuple('IndexEntry', [
     'gid', 'size', 'sha1', 'flags', 'path',
 ])
 
-vcs = None
-
-if check_if_repo(quite=True):
-    if os.path.isdir('.tit'):
-        vcs = '.tit'
-    elif os.path.isdir('.git'):
-        vcs = '.git'
-    else:
-        print("")
-
 
 def read_index():
     """Read git index file and return list of IndexEntry objects."""
+    vcs = internal_repo_name_check()
     try:
         data = read_binary_file(os.path.join(f'{vcs}', 'index'))
     except FileNotFoundError:
@@ -57,6 +48,7 @@ def read_index():
 
 def write_index(entries):
     """Write list of IndexEntry objects to git index file."""
+    vcs = internal_repo_name_check()
     packed_entries = []
     for entry in entries:
         entry_head = struct.pack('!LLLLLLLLLL20sH',

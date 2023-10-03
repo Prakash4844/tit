@@ -20,18 +20,21 @@ app = Typer(
 
 
 @app.callback(invoke_without_command=True)
-def add(paths: str, verbose: bool = False) -> None:
+def add(pathspec: str, verbose: bool = False) -> None:
     """Add all file paths to git index."""
     if os.name == 'nt':
-        paths = [p.replace('\\', '/') for p in paths]
+        pathspec = [p.replace('\\', '/') for p in pathspec]
         if verbose:
             print(f"{current_datetime()}: Replacing '//' with '\\' for compatibility purposes.")
-
+    if pathspec == '.':
+        pathspec = os.listdir(pathspec)
+    else:
+        pathspec = list(pathspec.split(" "))
     if verbose:
         print(f"{current_datetime()}: Reading Index...")
     all_entries = read_index()
-    entries = [e for e in all_entries if e.path not in paths]
-    for path in paths:
+    entries = [e for e in all_entries if e.path not in pathspec]
+    for path in pathspec:
         if verbose:
             print(f"{current_datetime()}: Creating Index entry...")
         sha1 = hash_object(read_binary_file(path), 'blob')

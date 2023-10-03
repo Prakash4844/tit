@@ -91,3 +91,13 @@ def check_if_repo(verbose: bool = False, quite: bool = False) -> bool:
         print('[bold red]Error:[/bold red] Neither git nor a tit repo found in current or any of the parent '
               'directories.')
     return False
+
+
+def internal_repo_name_check() -> str:
+    if check_if_repo(quite=True):
+        if os.path.isdir('.tit'):
+            return '.tit'
+        elif os.path.isdir('.git'):
+            return '.git'
+        else:
+            pass

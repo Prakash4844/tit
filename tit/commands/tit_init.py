@@ -52,11 +52,6 @@ def create_repo(verbose: bool = False) -> None:
             config_file.write('\tlogallrefupdates = true\n')
 
         if verbose:
-            print(f"{current_datetime()}: Creating Index")
-        # Initialize an empty index file
-        open(os.path.join(tit_dir, 'index'), 'w').close()
-
-        if verbose:
             print(f"{current_datetime()}: Checking out main branch")
         # Initialize an empty main branch
         open(os.path.join(tit_dir, 'refs', 'heads', 'main'), 'w').close()
@@ -97,7 +92,7 @@ def tit_init(
 
     is_git_repo = check_if_repo(verbose=verbose)
 
-    if not is_git_repo:
+    if is_git_repo:
         if verbose:
             create_repo(verbose=verbose)
         else:

@@ -9,9 +9,9 @@ import os.path
 import stat
 import sys
 import zlib
-from .check_repo import check_if_repo
-from .write_file import write_binary_file
+from .check_repo import internal_repo_name_check
 from .read_file import read_binary_file
+from .write_file import write_binary_file
 
 
 class ObjectType(enum.Enum):
@@ -21,24 +21,13 @@ class ObjectType(enum.Enum):
     commit = 1
     tree = 2
     blob = 3
-
-
-vcs = None
-
-if check_if_repo(quite=True):
-    if os.path.isdir('.tit'):
-        vcs = '.tit'
-    elif os.path.isdir('.git'):
-        vcs = '.git'
-    else:
-        pass
     
     
 def hash_object(data, obj_type, write=True):
     """Compute hash of object data of given type and write to object store
     if "write" is True. Return SHA-1 object hash as hex string.
     """
-    global vcs
+    vcs = internal_repo_name_check()
     object_header = f"{obj_type} {len(data)}".encode()
     complete_data = object_header + b'\x00' + data
     sha1 = hashlib.sha1(complete_data).hexdigest()
@@ -58,8 +47,7 @@ def find_object(sha1_prefix):
     store, or raise ValueError if there are no objects or multiple objects
     with this prefix.
     """
-    global vcs
-
+    vcs = internal_repo_name_check()
     if len(sha1_prefix) < 2:
         raise ValueError('hash prefix must be 2 or more characters')
 
@@ -79,8 +67,6 @@ def read_object(sha1_prefix):
     """Read object with given SHA-1 prefix and return tuple of
     (object_type, data_bytes), or raise ValueError if not found.
     """
-    global vcs
-
     path = find_object(sha1_prefix)
     complete_data = zlib.decompress(read_binary_file(path))
     nul_index = complete_data.index(b'\x00')
@@ -100,7 +86,6 @@ def cat_file(mode, sha1_prefix):
     'type', print the type of the object. If mode is 'pretty', print a
     prettified version of the object.
     """
-    global vcs
     obj_type, data = read_object(sha1_prefix)
 
     if mode in ['commit', 'tree', 'blob']:
