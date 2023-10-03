@@ -20,8 +20,8 @@ pytest-html = "^4.0.2"
 [tool.pytest.ini_options]
 addopts = [
   "--verbose",         # Run tests in verbose mode
-  "--cov",  # Replace with the name of the module or package you want to measure coverage for
-  "--cov-report=html",  # Generate HTML coverage report
+  # "--cov",  # Replace with the name of the module or package you want to measure coverage for
+  # "--cov-report=html",  # Generate HTML coverage report
 ]
 
 [tool.coverage.report]

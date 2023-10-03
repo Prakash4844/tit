@@ -21,8 +21,8 @@ class ObjectType(enum.Enum):
     commit = 1
     tree = 2
     blob = 3
-    
-    
+
+
 def hash_object(data, obj_type, write=True):
     """Compute hash of object data of given type and write to object store
     if "write" is True. Return SHA-1 object hash as hex string.

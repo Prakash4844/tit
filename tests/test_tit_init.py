@@ -29,7 +29,7 @@ def test_tit_init_verbose():
         os.chdir(tmpdir)
         # Test tit init with verbose option
         result = runner.invoke(app, ["init", "--verbose"])
-        assert "Initialized an empty tit repository" in result.output
+        assert " checking if a git repository already exist in current" in result.output
 
 
 def test_tit_init_existing_repo():
