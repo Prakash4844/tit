@@ -36,7 +36,7 @@ def test_check_if_repo_git_repo_with_invalid_tit_config():
         os.mkdir(".git")
         with open(os.path.join('.git', 'tit_config.yaml'), 'w') as file:
             file.write("invalid_yaml: basinful")
-        assert not check_if_repo()
+        assert not check_tit_config()
 
 
 def test_check_if_repo_git_repo_with_valid_tit_config():

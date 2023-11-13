@@ -48,8 +48,6 @@ def check_tit_config(verbose: bool = False, quite: bool = False) -> bool:
                     if not quite:
                         print("tit is set up to work with already present git repo.")
                     return True
-                else:
-                    return False
         else:
             print_info(verbose)
             return False
@@ -82,10 +80,8 @@ def check_if_repo(verbose: bool = False, quite: bool = False) -> bool:
         elif os.path.isdir('.git'):
             if not quite:
                 print(f'A git repo found in "{os.getcwd()}"')
-                is_config = check_tit_config(verbose)
-            else:
-                is_config = check_tit_config(quite=True)
-            return is_config
+                check_tit_config(verbose)
+                return True
         current_dir = os.path.dirname(current_dir)  # Move to the parent directory
     if verbose:
         print('[bold red]Error:[/bold red] Neither git nor a tit repo found in current or any of the parent '

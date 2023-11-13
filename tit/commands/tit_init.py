@@ -92,7 +92,7 @@ def tit_init(
 
     is_git_repo = check_if_repo(verbose=verbose)
 
-    if is_git_repo:
+    if not is_git_repo:
         if verbose:
             create_repo(verbose=verbose)
         else:
